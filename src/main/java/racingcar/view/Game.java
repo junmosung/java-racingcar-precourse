@@ -26,7 +26,8 @@ public class Game {
         String[] split = carNames.split(",");
         for (String name : split) {
             if (!checkName(name)) {
-                throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
+                System.out.println("[ERROR]");
+//                throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
             }
             carName.add(name);
         }
