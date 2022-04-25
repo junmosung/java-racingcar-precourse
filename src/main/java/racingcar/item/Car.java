@@ -13,12 +13,22 @@ public class Car {
 
     private String name;
 
+    private String result = "";
+
     private Map<Integer, CarStatus> status = new HashMap<>();
 
     public Car(String name, int input) {
         this.name = name;
         for (int i = 0; i < input; i++) {
-            this.status.put(i, carStatusSetting());
+            CarStatus carStatus = carStatusSetting();
+
+            this.status.put(i, carStatus);
+
+            if (carStatus == CarStatus.GO) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(result).append("-");
+                result = stringBuilder.toString();
+            }
         }
 
     }
@@ -28,6 +38,22 @@ public class Car {
             return CarStatus.GO;
         }
         return CarStatus.STOP;
+    }
+
+    public int CountGoStatus() {
+        int count = 0;
+
+        for (CarStatus value : status.values()) {
+            if (value == CarStatus.GO) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public String getResult() {
+        return result;
     }
 
     public String getName() {
